@@ -11,7 +11,6 @@ mongodb.connect=function(dbName, collection, host, port, verbose=FALSE){
 #mongodb.connect(dbName, collection, host, port)
 
 
-
 mongodb.insert=function(doc_or_docs,verbose=FALSE) {
   if (verbose)
     print(paste("collection full name:", rPython::python.get("collection._Collection__full_name.encode('ascii')")))
@@ -30,18 +29,15 @@ mongodb.save=function(to_save,verbose=FALSE) {
 
 
 
-mongodb.find=function(spec=NULL, verbose=FALSE, as.data.frame=FALSE) {
+mongodb.find=function(spec="None", verbose=FALSE, as.data.frame=FALSE) {
   if (verbose)
     print(paste("collection full name:", rPython::python.get("collection._Collection__full_name.encode('ascii')")))
+
+  rPython::python.exec(paste("r = collection.find(spec=",spec,")",sep=""))
   
+  # Reference here: http://api.mongodb.org/python/current/api/bson/json_util.html
   rPython::python.exec("from bson import Binary, Code")
   rPython::python.exec("from bson.json_util import dumps")
-  
-  if (is.null(spec))
-    rPython::python.exec("r = collection.find()")
-  else
-    rPython::python.exec(paste("r = collection.find(spec=",spec,")",sep=""))
-  
   resultJSON = rPython::python.get("dumps(list(r))")
   
   if (as.data.frame)
@@ -53,8 +49,6 @@ mongodb.find=function(spec=NULL, verbose=FALSE, as.data.frame=FALSE) {
 #mongodb.find(verbose=TRUE,as.data.frame=TRUE)
 
 
-
-
 mongodb.remove=function(spec_or_id) {
   return(invisible(rPython::python.get(paste("collection.remove(",spec_or_id,")",sep=""))))
 }
@@ -63,8 +57,12 @@ mongodb.remove=function(spec_or_id) {
 #mongodb.remove(spec_or_id="{ 'name' : 'CLX15 Comdty'}") # by spec
 
 
-
-mongodb.create_index=function(, key_or_list, cache_for=300) {
-  result(invisible(rPython::python.get(paste("collection.create_index(",key_or_list,", cache_for=",cache_for,")",sep="")))
+mongodb.create_index=function(key_or_list, cache_for=300) {
+  res = rPython::python.get(paste("collection.create_index(", key_or_list, ", cache_for=" ,cache_for,")",sep=""))
+  return(invisible(res))
 }
 
+
+mongodb.closeConnection=function(){
+  
+}
