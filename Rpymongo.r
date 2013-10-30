@@ -90,10 +90,9 @@ mongodb.find=function(spec="None",
 
 mongodb.remove=function(spec_or_id) {
   return(invisible(rPython::python.get(paste("collection.remove(",spec_or_id,")",sep=""))))
-}w
+}
 #mongodb.remove(spec_or_id=3) # by _id
 #mongodb.remove(spec_or_id="{ 'name' : \"aNameToBeRemoved\"}") # by spec
-#mongodb.remove(spec_or_id="{ 'name' : 'CLX15 Comdty'}") # by spec
 
 
 mongodb.dropCollection=function(name_or_collection, prompt=TRUE) {
