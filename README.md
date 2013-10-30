@@ -2,7 +2,7 @@ Rpymongo
 ========
 
 # Description of the project: 
-This project intends to provide to R a full API to mongodb (using rPython interface and pymongo package)
+This project intends to provide R users with a full API to mongodb (using rPython interface and pymongo package)
 
 
 # Requirements:
