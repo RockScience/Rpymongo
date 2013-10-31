@@ -11,7 +11,7 @@ This project intends to provide R users with a full API to mongodb (using rPytho
 - R package rPython
 
 ### Installation
-For now, it is not yet packaged: To use this library, you just have to source the file Rpymongo.r in R.
+To use this library, you just have to source the file Rpymongo.r in R
 
 #### Log of releases
 v0.1 (2013-10-30)
