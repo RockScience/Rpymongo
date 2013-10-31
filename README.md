@@ -6,8 +6,8 @@ This project intends to provide R users with a full API to mongodb (using rPytho
 
 
 # Requirements:
-- python (version 2.7.3 minimum)
-- python package pymongo (version 2.6.3 minimum)
+- python (version 2.7.3 or above)
+- python package pymongo (version 2.6.3 or above)
 - R package rPython
 
 
